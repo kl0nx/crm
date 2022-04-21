@@ -1,0 +1,18 @@
+function create(v)
+local Circle = Drawing.new("Circle")
+Circle.Visible = true
+Circle.Thickness = 5
+Circle.Radius = 1
+
+game:GetService("RunService").Heartbeat:connect(function()
+local temp = workspace.CurrentCamera:WorldToViewportPoint(v.Position)
+Circle.Position = Vector2.new(temp.x, temp.y)
+if v.Parent.Values.Broken.Value ~= false then Circle.Color = Color3.new(255,0,0) else Circle.Color = Color3.new(0,255,0) end
+local _, __ = workspace.CurrentCamera:WorldToViewportPoint(v.Position)
+if __ then Circle.Visible = true else Circle.Visible = false end
+end)
+end
+
+for i,v in pairs(game:GetService("Workspace").Map.BredMakurz:GetChildren()) do
+   create(v.MainPart)
+end
